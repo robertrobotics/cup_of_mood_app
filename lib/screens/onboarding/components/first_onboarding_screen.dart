@@ -1,13 +1,14 @@
 import 'package:cup_of_mood_mobile/components/inputs/text_input.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants.dart';
 
 class FirstOnboardingScreen extends StatefulWidget {
-  final Function(String) usernameUpdatedCallback;
+  final Function(String) updateUsernameCallback;
 
-  const FirstOnboardingScreen({Key key, @required this.usernameUpdatedCallback})
+  const FirstOnboardingScreen({Key key, @required this.updateUsernameCallback})
       : super(key: key);
 
   @override
@@ -23,9 +24,8 @@ class _FirstOnboardingScreenState extends State<FirstOnboardingScreen> {
   void initState() {
     super.initState();
 
-    // listen to textbox's events
     _usernameTextBoxController.addListener(() {
-      widget.usernameUpdatedCallback(
+      widget.updateUsernameCallback(
           _usernameTextBoxController.text.toUpperCase());
     });
   }
@@ -54,10 +54,11 @@ class _FirstOnboardingScreenState extends State<FirstOnboardingScreen> {
       },
       child: Scaffold(
         backgroundColor: kBackgroundColor,
+        resizeToAvoidBottomPadding: false,
         body: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
-          child: Container(
-            child: SingleChildScrollView(
+          child: Column(children: [
+            SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
@@ -115,7 +116,7 @@ class _FirstOnboardingScreenState extends State<FirstOnboardingScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 40.0, right: 40.0, top: 30.0, bottom: 10),
+                        left: 40.0, right: 40.0, top: 30.0),
                     child: TextBox(
                       hintText: 'Type your name',
                       controller: _usernameTextBoxController,
@@ -124,9 +125,21 @@ class _FirstOnboardingScreenState extends State<FirstOnboardingScreen> {
                 ],
               ),
             ),
-          ),
+          ]),
         ),
       ),
+    );
+  }
+
+  Container buildNavigationDot({bool active = false}) {
+    return Container(
+      margin: EdgeInsets.only(right: 10),
+      height: 27,
+      width: 27,
+      decoration: BoxDecoration(
+          color: active ? kGoldenPrimaryColor : Colors.transparent,
+          border: Border.all(width: 2, color: kGoldenPrimaryColor),
+          borderRadius: BorderRadius.circular(13)),
     );
   }
 }
