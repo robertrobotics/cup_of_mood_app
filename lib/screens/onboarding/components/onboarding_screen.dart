@@ -66,9 +66,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   AnimatedContainer buildNavigationDot({bool active = false}) {
     return AnimatedContainer(
-      margin: EdgeInsets.only(right: 10),
-      height: 27,
-      width: 27,
+      margin: EdgeInsets.only(right: 16),
+      height: 22,
+      width: 22,
       decoration: BoxDecoration(
           color: active ? kGoldenPrimaryColor : Colors.transparent,
           borderRadius: BorderRadius.circular(14),
