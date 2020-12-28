@@ -72,8 +72,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       decoration: BoxDecoration(
           color: active ? kGoldenPrimaryColor : Colors.transparent,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(width: 3, color: kGoldenPrimaryColor)),
-      duration: Duration(milliseconds: 200),
+          border: Border.all(width: 2, color: kGoldenPrimaryColor)),
+      duration: Duration(milliseconds: 150),
     );
   }
 }
